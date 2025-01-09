@@ -1,7 +1,11 @@
+import Stories from "@/components/story/Stories";
+
 const Homepage = () => {
   return (
-    <div className=''>Homepage</div>
-  )
-}
+    <main className="bg-gray-100 overflow-x-scroll">
+      <Stories />
+    </main>
+  );
+};
 
-export default Homepage
+export default Homepage;

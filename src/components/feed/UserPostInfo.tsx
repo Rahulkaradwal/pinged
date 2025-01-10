@@ -11,12 +11,11 @@ function UserPostInfo() {
           <Image src="/more.png" alt="logo" width={16} height={16} />
         </button>
       </div>
-      <div className="w-full h-80 ">
+      <div className="w-full relative h-80 ">
         <Image
-          src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg"
           alt="logo"
-          width={80}
-          height={80}
+          fill
           className="w-full h-full rounded-md object-cover"
         />
       </div>

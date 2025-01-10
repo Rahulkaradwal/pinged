@@ -9,8 +9,7 @@ function StoryItem() {
           className="w-full rounded-full  h-full object-cover"
           src="https://images.pexels.com/photos/28271342/pexels-photo-28271342/free-photo-of-a-beach-with-rocks-and-mountains-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           alt="logo"
-          width={20}
-          height={20}
+          fill
         />
       </div>
       <p className="text-xs font-semibold ">Your Story</p>

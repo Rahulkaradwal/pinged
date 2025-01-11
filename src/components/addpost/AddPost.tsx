@@ -1,9 +1,44 @@
+"use server";
 import Image from "next/image";
 import React from "react";
 
-function AddPost() {
+import { auth } from "@clerk/nextjs/server";
+import Button from "./reusableUI/Button";
+import { revalidatePath } from "next/cache";
+
+async function AddPost() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return null;
+  }
+
+  async function addPost(formData: FormData) {
+    "use server";
+    const desc = formData.get("desc");
+
+    // const post = await prisma.post.create({
+    //   data: {
+    //     desc: desc as string,
+    //     userId: userId as string,
+    //   },
+    // });
+    // revalidatePath("/");
+    // return post;
+    console.log(desc);
+  }
+
+  // const user = await prisma.user.create({
+  //   data: {
+  //     email: 'elsa@prisma.io',
+  //     name: 'Elsa Prisma',
+  //   },
+  // })
   return (
-    <div className="w-full p-4 mt-6 bg-white h-28 flex rounded-lg shadow-md  justify-between gap-4">
+    <form
+      action={addPost}
+      className="w-full p-4 mt-6 bg-white h-28 flex rounded-lg shadow-md  justify-between gap-4"
+    >
       <div className="w-12 h-12  ">
         <Image
           className="w-full rounded-full  flex-1 h-full object-cover"
@@ -17,24 +52,13 @@ function AddPost() {
         <textarea
           className="outline-none bg-gray-100 p-2 rounded-md"
           placeholder="What's on your mind?"
+          name="desc"
         />
         <div className="flex gap-4">
-          <button className="flex gap-2">
-            <Image src="/addimage.png" alt="logo" width={20} height={20} />
-            <p className="text-sm ">Photo</p>
-          </button>
-          <button className="flex gap-2">
-            <Image src="/addvideo.png" alt="logo" width={20} height={20} />
-            <p className="text-sm ">Video</p>
-          </button>
-          <button className="flex gap-2">
-            <Image src="/addevent.png" alt="logo" width={20} height={20} />
-            <p className="text-sm ">Event</p>
-          </button>
-          <button className="flex gap-2">
-            <Image src="/poll.png" alt="logo" width={20} height={20} />
-            <p className="text-sm ">Poll</p>
-          </button>
+          <Button text="Photo" image="/addimage.png" />
+          <Button text="Video" image="/addvideo.png" />
+          <Button text="Event" image="/addevent.png" />
+          <Button text="Poll" image="/poll.png" />
         </div>
       </div>
       <button className=" ">
@@ -46,7 +70,7 @@ function AddPost() {
           height={20}
         />
       </button>
-    </div>
+    </form>
   );
 }
 

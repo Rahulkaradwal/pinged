@@ -1,3 +1,4 @@
+"use server";
 import AddPost from "@/components/addpost/AddPost";
 import Feed from "@/components/feed/Feed";
 import MyProfile from "@/components/leftSideBar/MyProfile";
@@ -7,7 +8,7 @@ import FriendRequest from "@/components/rightSideBar/friendRequest/FriendRequest
 import SponsoredAds from "@/components/rightSideBar/sponsoredAds/SponsoredAds";
 import Stories from "@/components/story/Stories";
 
-const Homepage = () => {
+const Homepage = async () => {
   return (
     <main className="bg-gray-100 overflow-x-scroll pt-6 flex gap-6  ">
       <div className="hidden md:block w-[20%]  ">

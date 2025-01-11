@@ -1,6 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
+import { auth, currentUser } from "@clerk/nextjs/server";
 
-const MyProfile = () => {
+const MyProfile = async () => {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return null;
+  }
+
   return (
     <div className="p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-6">
       <div className="h-20 relative">
@@ -32,9 +40,12 @@ const MyProfile = () => {
           </div>
           <span className="text-sm text-gray-500">500 Followers</span>
         </div>
-        <button className="bg-blue-500 text-white text-xs p-2 rounded-md">
+        <Link
+          href={`/profile/${userId}`}
+          className="bg-blue-500 text-white text-xs p-2 rounded-md"
+        >
           My Profile
-        </button>
+        </Link>
       </div>
     </div>
   );

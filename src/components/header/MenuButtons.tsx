@@ -42,7 +42,7 @@ function MenuButtons() {
         </SignedIn>
         <SignedOut>
           <div className="flex items-center gap-2 text-sm">
-            <Image src="/login.png" alt="" width={20} height={20} />
+            {/* <Image src="/login.png" alt="" width={20} height={20} /> */}
             <Link href="/sign-in">Login/Register</Link>
           </div>
         </SignedOut>

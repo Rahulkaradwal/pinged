@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-instance
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: karadwal
+      MYSQL_DATABASE: mysql_db
+      MYSQL_USER: mysql_karadwal
+      MYSQL_PASSWORD: mysql_karadwal
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  mysql_network:
+    driver: bridge

@@ -1,5 +1,5 @@
+"use server";
 import { prisma } from "@/app/utils/connect";
-import { Post as PostType } from "@prisma/client";
 import { Suspense } from "react";
 import Post from "./Post";
 

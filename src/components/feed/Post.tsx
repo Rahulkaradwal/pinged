@@ -1,3 +1,4 @@
+"use server";
 import React from "react";
 import UserPostInfo from "./UserPostInfo";
 import AddComment from "./AddComment";

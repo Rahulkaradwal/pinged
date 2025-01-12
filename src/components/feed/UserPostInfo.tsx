@@ -1,9 +1,13 @@
+"use server";
 import Image from "next/image";
 import React from "react";
 import UserNameAndPhoto from "../ui/UserNameAndPhoto";
 import ActionButtons from "./ui/ActionButtons";
+import { auth } from "@clerk/nextjs/server";
 
-function UserPostInfo({ post }: any) {
+async function UserPostInfo({ post }: any) {
+  const { userId } = await auth();
+  if (!userId) return;
   return (
     <>
       <div className="flex justify-between  items-center">
@@ -31,6 +35,8 @@ function UserPostInfo({ post }: any) {
       </div>
       <p className="">{post.desc}</p>
       <ActionButtons
+        userId={userId}
+        postId={post.id}
         likes={post.likes.length}
         comments={post.comments.length}
       />

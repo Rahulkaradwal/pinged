@@ -19,7 +19,7 @@ async function page({ params }: { params: { id: string } }) {
       </div>
       <div className="md:w-[70%] lg:w-[50%] w-full ">
         <ProfileCard />
-        <Feed />
+        <Feed userId={userId} />
       </div>
 
       <div className="hidden w-[30%] lg:flex flex-col  gap-6 ">

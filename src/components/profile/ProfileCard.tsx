@@ -24,7 +24,7 @@ async function ProfileCard() {
     <div className="flex flex-col gap-20 relative">
       <div className="w-full relative h-64 ">
         <Image
-          src="https://images.pexels.com/photos/14557814/pexels-photo-14557814.jpeg?auto=compress&cs=tinysrgb&w=800"
+          src={user?.cover as string}
           alt="logo"
           fill
           className="w-full h-full rounded-md object-cover"
@@ -53,7 +53,7 @@ async function ProfileCard() {
       </div>
       <div className="absolute h-32 w-32 left-0 right-0 m-auto top-48 rounded-full border-4 border-white">
         <Image
-          src="https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          src={user?.avatar as string}
           alt="logo"
           fill
           className="w-full h-full rounded-full object-cover"

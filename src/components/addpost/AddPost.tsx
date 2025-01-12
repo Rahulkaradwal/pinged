@@ -25,7 +25,6 @@ async function AddPost() {
     // });
     // revalidatePath("/");
     // return post;
-    console.log(desc);
   }
 
   // const user = await prisma.user.create({

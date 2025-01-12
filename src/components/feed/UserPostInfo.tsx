@@ -1,47 +1,39 @@
 import Image from "next/image";
 import React from "react";
 import UserNameAndPhoto from "../ui/UserNameAndPhoto";
+import ActionButtons from "./ui/ActionButtons";
 
-function UserPostInfo() {
+function UserPostInfo({ post }: any) {
   return (
     <>
       <div className="flex justify-between  items-center">
-        <UserNameAndPhoto />
+        <UserNameAndPhoto
+          type="feed"
+          name={post.user.name}
+          avatar={post.user.avatar}
+          surname={post.user.surname}
+        />
         <button>
           <Image src="/more.png" alt="logo" width={16} height={16} />
         </button>
       </div>
       <div className="w-full relative h-80 ">
         <Image
-          src="https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg"
+          src={
+            post.img
+              ? post.img
+              : "https://images.pexels.com/photos/1563356/pexels-photo-1563356.jpeg"
+          }
           alt="logo"
           fill
           className="w-full h-full rounded-md object-cover"
         />
       </div>
-      <p className="">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque porro
-        aliquam ab ipsum reiciendis magni at reprehenderit beatae blanditiis
-        quos provident ullam, iste mollitia perferendis animi odio obcaecati est
-        inventore.
-      </p>
-      <div className="flex text-sm justify-between">
-        <div className="flex w-fit gap-4  justify-between items-center bg-gray-100 p-2 rounded-xl">
-          <Image src="/like.png" alt="logo" width={16} height={16} />
-          <p>123</p>
-          <p className="hidden md:block">Likes</p>
-        </div>
-        <div className="flex w-fit gap-4  justify-between items-center bg-gray-100 p-2 rounded-xl">
-          <Image src="/comment.png" alt="logo" width={16} height={16} />
-          <p>123</p>
-          <p className="hidden md:block">Comments</p>
-        </div>
-        <div className="flex w-fit gap-4  justify-between items-center bg-gray-100 p-2 rounded-xl">
-          <Image src="/share.png" alt="logo" width={16} height={16} />
-          <p>123</p>
-          <p className="hidden md:block">Shares</p>
-        </div>
-      </div>
+      <p className="">{post.desc}</p>
+      <ActionButtons
+        likes={post.likes.length}
+        comments={post.comments.length}
+      />
     </>
   );
 }

@@ -1,14 +1,31 @@
+import { prisma } from "@/app/utils/connect";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import React from "react";
 
-function AddComment() {
+async function AddComment() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    return null;
+  }
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    select: {
+      avatar: true,
+      name: true,
+      surname: true,
+    },
+  });
   return (
     <div className="flex justify-between  items-center">
       <div className="flex items-center gap-4">
         <div className="w-8 h-8    rounded-full">
           <Image
             className="w-full rounded-full  h-full object-cover"
-            src="https://images.pexels.com/photos/28271342/pexels-photo-28271342/free-photo-of-a-beach-with-rocks-and-mountains-in-the-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            src={user?.avatar as string}
             alt="logo"
             width={20}
             height={20}

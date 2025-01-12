@@ -1,7 +1,10 @@
 import { prisma } from "@/app/utils/connect";
 import Image from "next/image";
 import Link from "next/link";
-import React, { use } from "react";
+import React from "react";
+import Info from "./ui/Info";
+import FollowButton from "./ui/FollowButton";
+import BlockButton from "./ui/BlockButton";
 
 async function UserInformation({ userId }: { userId: string }) {
   if (!userId) return null;
@@ -27,24 +30,25 @@ async function UserInformation({ userId }: { userId: string }) {
           <span className="text-sm">{user?.username}</span>
         </div>
         <p>{user?.description} </p>
-        <div className="flex items-center gap-2">
-          <Image src="/map.png" alt="" width={16} height={16} />
-          <span>
-            Living in <b>{user?.city}</b>
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Image src="/school.png" alt="" width={16} height={16} />
-          <span>
-            Went to <b>{user?.school}</b>
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <Image src="/work.png" alt="" width={16} height={16} />
-          <span>
-            Works at <b>{user?.work}</b>
-          </span>
-        </div>
+
+        {user?.city && (
+          <Info icon="/map.png">
+            Living in <strong>{user?.city}</strong>
+          </Info>
+        )}
+
+        {user?.school && (
+          <Info icon="/school.png">
+            Went to <strong>{user?.school}</strong>
+          </Info>
+        )}
+
+        {user?.work && (
+          <Info icon="/work.png">
+            Works at <strong>{user?.work}</strong>
+          </Info>
+        )}
+
         <div className="flex items-center justify-between">
           <div className="flex gap-1 items-center">
             <Image src="/link.png" alt="" width={16} height={16} />
@@ -58,16 +62,12 @@ async function UserInformation({ userId }: { userId: string }) {
           <div className="flex gap-1 items-center">
             <Image src="/date.png" alt="" width={16} height={16} />
             <span className="text-xs">
-              Joined {user?.createdAt.toString().slice(0, 15)}
+              Joined {user?.createdAt.toString().slice(4, 15)}
             </span>
           </div>
         </div>
-        <button className="bg-blue-500 text-white text-sm rounded-md p-2">
-          Follow
-        </button>
-        <span className="text-red-400 self-end text-xs cursor-pointer">
-          Block User
-        </span>
+        <FollowButton />
+        <BlockButton />
       </div>
     </div>
   );
